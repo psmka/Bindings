@@ -20,4 +20,8 @@
     // Insert code here to initialize your application
 }
 
+-(void) awakeFromNib{
+    NSLog(@"Gudrun");
+}
+
 @end

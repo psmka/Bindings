@@ -13,6 +13,10 @@
 		78BCA3C716E616D6001A0208 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 78BCA3C516E616D6001A0208 /* Credits.rtf */; };
 		78BCA3CA16E616D6001A0208 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BCA3C916E616D6001A0208 /* AppDelegate.m */; };
 		78BCA3CD16E616D6001A0208 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78BCA3CB16E616D6001A0208 /* MainMenu.xib */; };
+		78BCA3D516E63E5E001A0208 /* TableDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 78BCA3D316E63E5D001A0208 /* TableDelegate.h */; };
+		78BCA3D616E63E5E001A0208 /* TableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BCA3D416E63E5D001A0208 /* TableDelegate.m */; };
+		78BCA3D916E6462C001A0208 /* Item.h in Sources */ = {isa = PBXBuildFile; fileRef = 78BCA3D716E6462C001A0208 /* Item.h */; };
+		78BCA3DA16E6462C001A0208 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BCA3D816E6462C001A0208 /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		78BCA3C816E616D6001A0208 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.objj.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		78BCA3C916E616D6001A0208 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		78BCA3CC16E616D6001A0208 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		78BCA3D316E63E5D001A0208 /* TableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = TableDelegate.h; sourceTree = "<group>"; };
+		78BCA3D416E63E5D001A0208 /* TableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableDelegate.m; sourceTree = "<group>"; };
+		78BCA3D716E6462C001A0208 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = Item.h; sourceTree = "<group>"; };
+		78BCA3D816E6462C001A0208 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				78BCA3C816E616D6001A0208 /* AppDelegate.h */,
+				78BCA3D316E63E5D001A0208 /* TableDelegate.h */,
+				78BCA3D416E63E5D001A0208 /* TableDelegate.m */,
+				78BCA3D716E6462C001A0208 /* Item.h */,
+				78BCA3D816E6462C001A0208 /* Item.m */,
 				78BCA3C916E616D6001A0208 /* AppDelegate.m */,
 				78BCA3CB16E616D6001A0208 /* MainMenu.xib */,
 				78BCA3BD16E616D6001A0208 /* Supporting Files */,
@@ -168,6 +180,10 @@
 			files = (
 				78BCA3C316E616D6001A0208 /* main.m in Sources */,
 				78BCA3CA16E616D6001A0208 /* AppDelegate.m in Sources */,
+				78BCA3D516E63E5E001A0208 /* TableDelegate.h in Sources */,
+				78BCA3D616E63E5E001A0208 /* TableDelegate.m in Sources */,
+				78BCA3D916E6462C001A0208 /* Item.h in Sources */,
+				78BCA3DA16E6462C001A0208 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
