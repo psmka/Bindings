@@ -11,8 +11,8 @@
 @interface Item : NSObject
 
 @property (nonatomic) float     price;
-@property (nonatomic) NSString *name;
+@property (nonatomic,strong) NSString *name;
 
--(Item*) setName:(NSString*) aName andPrice:(float) aPrice;
+-(id) initWithName:(NSString*) aName andPrice:(float) aPrice;
 
 @end

@@ -21,7 +21,7 @@
 }
 
 -(void) awakeFromNib{
-    NSLog(@"Gudrun");
+    NSLog(@"AppDelegate - awakeFromNib");
 }
 
 @end

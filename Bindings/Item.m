@@ -8,6 +8,7 @@
 
 #import "Item.h"
 
+
 @implementation Item
 
 @synthesize price = _price;
@@ -21,7 +22,8 @@
 	return self;
 }
 
--(Item*) setName:(NSString*) aName andPrice:(float) aPrice {
+-(id) initWithName:(NSString *)aName andPrice:(float)aPrice {
+    self = [self init];
     self.price = aPrice;
     self.name = [NSString stringWithString:aName];
     return self;
