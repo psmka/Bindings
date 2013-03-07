@@ -14,4 +14,6 @@
 @property (nonatomic,strong) IBOutlet NSTableView         *tableView;
 @property (nonatomic,strong) IBOutlet NSArrayController   *arrayController;
 
+@property (weak) IBOutlet NSButton *doStuffButton;
+
 @end

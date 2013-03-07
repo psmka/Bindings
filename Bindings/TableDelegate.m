@@ -23,6 +23,7 @@
 
 -(void) awakeFromNib{
     NSLog(@"TableDelegate - awakeFromNib");
+    
 //    _items = [NSMutableArray new];
 //    [self.items addObject:[[Item alloc] initWithName:@"First" andPrice:14]];
     self.itemIndex = 1;
@@ -92,6 +93,5 @@
     NSLog(@"(void)replaceItemsAtIndexes:(CPIndexSet)indexes withItems:(CPArray)items ");
     [self.items replaceObjectsAtIndexes:indexes withObjects:items];
 }
-
 
 @end

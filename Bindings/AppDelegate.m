@@ -12,7 +12,7 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+    NSLog(@"AppDelegate - dealloc");
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
