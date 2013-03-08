@@ -29,4 +29,8 @@
     return self;
 }
 
+-(NSString*) description{
+    return [NSString stringWithFormat:@"Item name:price  - %@:%f",self.name,self.price];
+}
+
 @end

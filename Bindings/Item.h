@@ -15,4 +15,6 @@
 
 -(id) initWithName:(NSString*) aName andPrice:(float) aPrice;
 
+-(NSString*) description;
+
 @end

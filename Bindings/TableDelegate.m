@@ -22,14 +22,8 @@
 @synthesize itemIndex = _itemIndex;
 
 -(void) awakeFromNib{
-    NSLog(@"TableDelegate - awakeFromNib");
-    
-//    _items = [NSMutableArray new];
-//    [self.items addObject:[[Item alloc] initWithName:@"First" andPrice:14]];
+    NSLog(@"TableDelegate - awakeFromNib");    
     self.itemIndex = 1;
-//    [self.arrayController setContent:self.items];
-//    [arrayController setObjectClass: [Item class]];
-//    [arrayController setAutomaticallyPreparesContent:YES];
 }
 
 -(NSMutableArray*) items {
@@ -38,14 +32,13 @@
     return _items;
 }
 
-
 - (NSUInteger)countOfItems {
     NSLog(@"(NSUInteger)countOfItems");
     return [self.items count];
 }
 
 
-- (id)objectInItemsAtIndex:(NSUInteger)index {
+- (id) objectInItemsAtIndex:(NSUInteger)index {
     NSLog(@"(id)objectInItemsAtIndex:(NSUInteger)index");
     Item *item = [self.items objectAtIndex:index];
     NSLog(@"item: %@:%f",item.name,item.price);
@@ -60,25 +53,19 @@
 - (void) insertObject:(id)anObject inItemsAtIndex:(NSUInteger)index
 {
     NSLog(@"(void)insertObject:(id)anObject inItemsAtIndex:(NSUInteger)index");
-    if(self.itemIndex % 3 == 0){
-        self.itemIndex = self.itemIndex + 1;
+    if(self.itemIndex % 5 == 0){
         NSAlert* alert = [[NSAlert alloc ] init];
-        alert.messageText = @"Not the third again";
+        alert.messageText = @"Wrong answer, thank you for playing";
         [alert runModal];
     } else {
         [self.items insertObject:anObject atIndex:index];
         self.itemIndex += 1;
     }
-//    Item *notWrongItem = [Item new];
-//    notWrongItem.price = 34;
-//    notWrongItem.name = @"Olle";w
-//    NSLog(@"added notwrongitem");
-//    [self.items insertObject:notWrongItem atIndex: index];
 }
 
 - (void) removeObjectFromItemsAtIndex:(NSUInteger)index
 {
-    NSLog(@"(void)removeObjectFromItemsAtIndex:(NSUInteger)index %lu",(unsigned long)index);
+    NSLog(@"(void)removeObjectFromItemsAtIndex:(NSUInteger)index %lu",(NSUInteger)index);
     [self.items removeObjectAtIndex:index];
 }
 
@@ -86,12 +73,24 @@
 {
     NSLog(@"(void)replaceObjectInItemsAtIndex:(NSUInteger)index withObject:(id)anObject");
     [self.items replaceObjectAtIndex:index withObject:anObject];
+
+    NSLog(@"Current state of items %@",self.items);
 }
 
 - (void)replaceItemsAtIndexes:(id)indexes
-                     withItems:(id)items {
+                    withItems:(id)items {
     NSLog(@"(void)replaceItemsAtIndexes:(CPIndexSet)indexes withItems:(CPArray)items ");
     [self.items replaceObjectsAtIndexes:indexes withObjects:items];
 }
 
+
+
+- (IBAction)doStuff:(NSButton *)sender {
+    [self.arrayController insertObject:[[Item alloc] initWithName:@"First" andPrice:14] atArrangedObjectIndex:0];
+    NSLog(@"Current state of items %@",self.items);
+}
+
+- (IBAction)ChangeItem:(id)sender {
+    self.itemIndex = 1;
+}
 @end
