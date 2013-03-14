@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TableDelegate : NSController
+@interface TableDelegate : NSArrayController
 
 @property (nonatomic,strong)          NSMutableArray      *items;
 @property (nonatomic,strong) IBOutlet NSTableView         *tableView;
-@property (nonatomic,strong) IBOutlet NSArrayController   *arrayController;
+// Changed to inheritance @property (nonatomic,strong) IBOutlet NSArrayController   *arrayController;
 
 @property (nonatomic,weak) IBOutlet NSButton *doStuffButton;
 

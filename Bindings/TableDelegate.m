@@ -14,21 +14,24 @@
 @end
 
 
-@implementation TableDelegate
+@implementation TableDelegate 
 
 @synthesize items = _items;
-@synthesize arrayController = _arrayController;
+//@synthesize arrayController = _arrayController;
 @synthesize tableView = _tableView;
 @synthesize itemIndex = _itemIndex;
 
 -(void) awakeFromNib{
-    NSLog(@"TableDelegate - awakeFromNib");    
+    NSLog(@"TableDelegate - awakeFromNib");
+    [self setContent:self.items];
     self.itemIndex = 1;
+    [self addObserver:self forKeyPath:@"arrangedObjects" options:0 context:nil];
 }
 
 -(NSMutableArray*) items {
-    if(_items == nil)
+    if(_items == nil){
         _items = [[NSMutableArray alloc] init];
+    }    
     return _items;
 }
 
@@ -84,9 +87,31 @@
 }
 
 
+#pragma mark Overrides
+- (void)insertObject:(id)object atArrangedObjectIndex:(NSUInteger)index{
+    NSLog(@"(void)insertObject:(id)object atArrangedObjectIndex:(NSUInteger)index");
+    [super insertObject:object atArrangedObjectIndex:index];
+    
+}
+
+- (void)removeObjectAtArrangedObjectIndex:(NSUInteger)index{
+    NSLog(@"(void)removeObjectAtArrangedObjectIndex:(NSUInteger)index");
+    [super removeObjectAtArrangedObjectIndex:index];
+}
+
+#pragma mark KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    
+//    NSLog(@"(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context");
+    if([object isKindOfClass:[Item class]] && change == nil){
+        NSLog(@"keypath:%@ - object:%@ - change:%@ - context:%@",keyPath,object,change,context);
+    }
+    
+}
+#pragma mark Actions
 
 - (IBAction)doStuff:(NSButton *)sender {
-    [self.arrayController insertObject:[[Item alloc] initWithName:@"First" andPrice:14] atArrangedObjectIndex:0];
+//    [self insertObject:[[Item alloc] initWithName:@"First" andPrice:14] atArrangedObjectIndex:0];
     NSLog(@"Current state of items %@",self.items);
 }
 
