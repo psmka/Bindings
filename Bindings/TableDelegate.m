@@ -10,22 +10,40 @@
 #import "Item.h"
 
 @interface TableDelegate()
-@property (nonatomic) int itemIndex;
+@property (nonatomic)                 int                   itemIndex;
+@property (nonatomic,strong)          NSMutableArray        *items;
+@property (nonatomic,strong) IBOutlet NSArrayController     *arrayController;
+
 @end
 
 
 @implementation TableDelegate 
 
 @synthesize items = _items;
-//@synthesize arrayController = _arrayController;
+@synthesize arrayController = _arrayController;
 @synthesize tableView = _tableView;
 @synthesize itemIndex = _itemIndex;
 
 -(void) awakeFromNib{
     NSLog(@"TableDelegate - awakeFromNib");
-    [self setContent:self.items];
     self.itemIndex = 1;
-    [self addObserver:self forKeyPath:@"arrangedObjects" options:0 context:nil];
+//    [self addObserver:self forKeyPath:@"items" options:0 context:@"myContext"];
+    [self setValue:@3 forKey:@"itemIndex"];
+    [self setValue:nil forKey:@"itemIndex"];
+}
+
+-(void) setItemIndex:(int)itemIndex{
+    _itemIndex = itemIndex;
+}
+
+- (void)setNilValueForKey:(NSString *)theKey {
+    
+    if ([theKey isEqualToString:@"itemIndex"]) {
+        [self setValue:@0 forKey:@"itemIndex"];
+    }
+    else {
+        [super setNilValueForKey:theKey];
+    }
 }
 
 -(NSMutableArray*) items {
@@ -34,6 +52,14 @@
     }    
     return _items;
 }
+
+
+#pragma mark Indexed Accessors
+//- (NSUInteger)countOf<key>;
+//- (id)objectIn<key>AtIndex:(NSUInteger)index;
+//- (void)insertObject:(id)obj in<key>AtIndex:(NSUInteger)index;
+//- (void)removeObjectFrom<key>AtIndex:(NSUInteger)index;
+//- (void)replaceObjectIn<key>AtIndex:(NSUInteger)index withObject:(id)obj;
 
 - (NSUInteger)countOfItems {
     NSLog(@"(NSUInteger)countOfItems");
@@ -56,6 +82,10 @@
 - (void) insertObject:(id)anObject inItemsAtIndex:(NSUInteger)index
 {
     NSLog(@"(void)insertObject:(id)anObject inItemsAtIndex:(NSUInteger)index");
+    [self.items insertObject:anObject atIndex:index];
+    self.itemIndex += 1;
+    return;
+
     if(self.itemIndex % 5 == 0){
         NSAlert* alert = [[NSAlert alloc ] init];
         alert.messageText = @"Wrong answer, thank you for playing";
@@ -70,13 +100,14 @@
 {
     NSLog(@"(void)removeObjectFromItemsAtIndex:(NSUInteger)index %lu",(NSUInteger)index);
     [self.items removeObjectAtIndex:index];
+    self.itemIndex -= 1;
 }
 
 - (void) replaceObjectInItemsAtIndex:(NSUInteger)index withObject:(id)anObject
 {
     NSLog(@"(void)replaceObjectInItemsAtIndex:(NSUInteger)index withObject:(id)anObject");
     [self.items replaceObjectAtIndex:index withObject:anObject];
-
+    
     NSLog(@"Current state of items %@",self.items);
 }
 
@@ -87,35 +118,25 @@
 }
 
 
-#pragma mark Overrides
-- (void)insertObject:(id)object atArrangedObjectIndex:(NSUInteger)index{
-    NSLog(@"(void)insertObject:(id)object atArrangedObjectIndex:(NSUInteger)index");
-    [super insertObject:object atArrangedObjectIndex:index];
-    
-}
-
-- (void)removeObjectAtArrangedObjectIndex:(NSUInteger)index{
-    NSLog(@"(void)removeObjectAtArrangedObjectIndex:(NSUInteger)index");
-    [super removeObjectAtArrangedObjectIndex:index];
-}
-
 #pragma mark KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     
-//    NSLog(@"(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context");
+    NSLog(@"(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context");
     if([object isKindOfClass:[Item class]] && change == nil){
         NSLog(@"keypath:%@ - object:%@ - change:%@ - context:%@",keyPath,object,change,context);
     }
     
 }
+
+
 #pragma mark Actions
 
 - (IBAction)doStuff:(NSButton *)sender {
-//    [self insertObject:[[Item alloc] initWithName:@"First" andPrice:14] atArrangedObjectIndex:0];
     NSLog(@"Current state of items %@",self.items);
 }
 
 - (IBAction)ChangeItem:(id)sender {
-    self.itemIndex = 1;
+    [self.arrayController addObject:[[Item alloc] initWithName:@"tore" andPrice:56]];
+    NSLog(@"Current state of items %@",self.items);
 }
 @end
