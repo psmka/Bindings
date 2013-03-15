@@ -30,10 +30,17 @@
 //    [self addObserver:self forKeyPath:@"items" options:0 context:@"myContext"];
     [self setValue:@3 forKey:@"itemIndex"];
     [self setValue:nil forKey:@"itemIndex"];
+//    [self setValue:[[Item alloc] initWithName:@"tore" andPrice:56] forKey:@"items"];
 }
 
 -(void) setItemIndex:(int)itemIndex{
     _itemIndex = itemIndex;
+}
+
+-(BOOL) validateItemIndex:(id *)ioValue error:(NSError *)outError {
+    NSLog(@"(BOOL) validateItemIndex:(id *)ioValue error:(NSError * __autoreleasing *)outError");
+    *ioValue = @"23";
+    return YES;
 }
 
 - (void)setNilValueForKey:(NSString *)theKey {
