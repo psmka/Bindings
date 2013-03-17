@@ -37,9 +37,9 @@
     _itemIndex = itemIndex;
 }
 
--(BOOL) validateItemIndex:(id *)ioValue error:(NSError *)outError {
+-(BOOL) validateItemIndex:(id*) ioValue error:(NSError*) outError {
     NSLog(@"(BOOL) validateItemIndex:(id *)ioValue error:(NSError * __autoreleasing *)outError");
-    *ioValue = @"23";
+    *ioValue = @23;
     return YES;
 }
 
