@@ -27,7 +27,11 @@
 -(void) awakeFromNib{
     NSLog(@"TableDelegate - awakeFromNib");
     self.itemIndex = 1;
+    [self.arrayController setContent:self.items];
 //    [self addObserver:self forKeyPath:@"items" options:0 context:@"myContext"];
+    id validate = [NSNumber numberWithInt:self.itemIndex];
+    NSError* errorValue = [[NSError alloc] init];
+    [self validateValue:&validate forKey:@"itemIndex" error: &errorValue];
     [self setValue:@3 forKey:@"itemIndex"];
     [self setValue:nil forKey:@"itemIndex"];
 //    [self setValue:[[Item alloc] initWithName:@"tore" andPrice:56] forKey:@"items"];
@@ -37,7 +41,7 @@
     _itemIndex = itemIndex;
 }
 
--(BOOL) validateItemIndex:(id*) ioValue error:(NSError*) outError {
+-(BOOL) validateItemIndex:(id*) ioValue error:(NSError**) outError {
     NSLog(@"(BOOL) validateItemIndex:(id *)ioValue error:(NSError * __autoreleasing *)outError");
     *ioValue = @23;
     return YES;
@@ -139,11 +143,20 @@
 #pragma mark Actions
 
 - (IBAction)doStuff:(NSButton *)sender {
+    NSMutableArray* proxy = [self mutableArrayValueForKey:@"items"];
+    Item* item = [proxy objectAtIndex:0];
+    item.name = @"egon";
+    item.price = 99;
+    [proxy replaceObjectAtIndex:0 withObject:item];
+    
+    
     NSLog(@"Current state of items %@",self.items);
 }
 
 - (IBAction)ChangeItem:(id)sender {
-    [self.arrayController addObject:[[Item alloc] initWithName:@"tore" andPrice:56]];
-    NSLog(@"Current state of items %@",self.items);
+    NSMutableArray* proxy = [self mutableArrayValueForKey:@"items"];
+    NSUInteger noItems = [proxy count];
+    [proxy insertObject:[[Item alloc] initWithName:@"tore" andPrice:56] atIndex:0];
+    NSLog(@"Current state of items %@ count: %li",self.items,(unsigned long)noItems);
 }
 @end

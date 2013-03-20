@@ -33,4 +33,17 @@
     return [NSString stringWithFormat:@"Item name:price  - %@:%f",self.name,self.price];
 }
 
+-(BOOL) validatePrice:(id*) ioValue error:(NSError**) outError {
+    NSLog(@"(BOOL) validateItemIndex:(id *)ioValue error:(NSError * __autoreleasing *)outError");
+    *ioValue = @23;
+    return YES;
+}
+
+-(BOOL) validateName:(id*) ioValue error:(NSError**) outError {
+    NSLog(@"(BOOL) validateItemIndex:(id *)ioValue error:(NSError * __autoreleasing *)outError");
+    *ioValue = @"Validate";
+    return NO;
+}
+
+
 @end
