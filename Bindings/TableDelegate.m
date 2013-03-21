@@ -14,6 +14,10 @@
 @property (nonatomic,strong)          NSMutableArray        *items;
 @property (nonatomic,strong) IBOutlet NSArrayController     *arrayController;
 
+@property (nonatomic,strong) IBOutlet NSWindow              *window;
+@property (nonatomic,strong) IBOutlet NSPanel               *panel;
+
+
 @end
 
 
@@ -23,6 +27,8 @@
 @synthesize arrayController = _arrayController;
 @synthesize tableView = _tableView;
 @synthesize itemIndex = _itemIndex;
+@synthesize window = _window;
+@synthesize panel = _panel;
 
 -(void) awakeFromNib{
     NSLog(@"TableDelegate - awakeFromNib");
@@ -30,7 +36,7 @@
     [self.arrayController setContent:self.items];
 //    [self addObserver:self forKeyPath:@"items" options:0 context:@"myContext"];
     id validate = [NSNumber numberWithInt:self.itemIndex];
-    NSError* errorValue = [[NSError alloc] init];
+    NSError* errorValue = [[NSError alloc] initWithDomain:@"MyDomain" code:(long)34 userInfo:[NSDictionary dictionaryWithObject:@"DicObj" forKey:@"name" ]];
     [self validateValue:&validate forKey:@"itemIndex" error: &errorValue];
     [self setValue:@3 forKey:@"itemIndex"];
     [self setValue:nil forKey:@"itemIndex"];
@@ -44,7 +50,7 @@
 -(BOOL) validateItemIndex:(id*) ioValue error:(NSError**) outError {
     NSLog(@"(BOOL) validateItemIndex:(id *)ioValue error:(NSError * __autoreleasing *)outError");
     *ioValue = @23;
-    return YES;
+    return NO;
 }
 
 - (void)setNilValueForKey:(NSString *)theKey {
@@ -95,16 +101,6 @@
     NSLog(@"(void)insertObject:(id)anObject inItemsAtIndex:(NSUInteger)index");
     [self.items insertObject:anObject atIndex:index];
     self.itemIndex += 1;
-    return;
-
-    if(self.itemIndex % 5 == 0){
-        NSAlert* alert = [[NSAlert alloc ] init];
-        alert.messageText = @"Wrong answer, thank you for playing";
-        [alert runModal];
-    } else {
-        [self.items insertObject:anObject atIndex:index];
-        self.itemIndex += 1;
-    }
 }
 
 - (void) removeObjectFromItemsAtIndex:(NSUInteger)index
@@ -118,14 +114,13 @@
 {
     NSLog(@"(void)replaceObjectInItemsAtIndex:(NSUInteger)index withObject:(id)anObject");
     [self.items replaceObjectAtIndex:index withObject:anObject];
-    
-    NSLog(@"Current state of items %@",self.items);
 }
 
 - (void)replaceItemsAtIndexes:(id)indexes
                     withItems:(id)items {
     NSLog(@"(void)replaceItemsAtIndexes:(CPIndexSet)indexes withItems:(CPArray)items ");
     [self.items replaceObjectsAtIndexes:indexes withObjects:items];
+    [pan]
 }
 
 
@@ -136,7 +131,8 @@
     if([object isKindOfClass:[Item class]] && change == nil){
         NSLog(@"keypath:%@ - object:%@ - change:%@ - context:%@",keyPath,object,change,context);
     }
-    
+
+
 }
 
 
@@ -148,8 +144,6 @@
     item.name = @"egon";
     item.price = 99;
     [proxy replaceObjectAtIndex:0 withObject:item];
-    
-    
     NSLog(@"Current state of items %@",self.items);
 }
 
@@ -157,6 +151,7 @@
     NSMutableArray* proxy = [self mutableArrayValueForKey:@"items"];
     NSUInteger noItems = [proxy count];
     [proxy insertObject:[[Item alloc] initWithName:@"tore" andPrice:56] atIndex:0];
+    NSArray* objects = [proxy objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 1)]];
     NSLog(@"Current state of items %@ count: %li",self.items,(unsigned long)noItems);
 }
 @end

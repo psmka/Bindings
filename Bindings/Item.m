@@ -35,7 +35,13 @@
 
 -(BOOL) validatePrice:(id*) ioValue error:(NSError**) outError {
     NSLog(@"(BOOL) validateItemIndex:(id *)ioValue error:(NSError * __autoreleasing *)outError");
-    *ioValue = @23;
+    int price = [[NSString stringWithString:*ioValue] intValue];
+    if(price == 55){
+        *ioValue = @23;
+        NSDictionary *userInfoDict = @{ NSLocalizedDescriptionKey : @"Cannot add 55 to the price" };
+        *outError = [[NSError alloc] initWithDomain:@"MyDoamin" code:(long)3 userInfo:userInfoDict];
+        return NO;
+    }
     return YES;
 }
 
