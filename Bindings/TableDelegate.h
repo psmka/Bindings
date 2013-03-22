@@ -15,5 +15,6 @@
 
 - (IBAction)doStuff:(NSButton *)sender;
 - (IBAction)ChangeItem:(id)sender;
+- (IBAction)showOrder:(NSButton *)sender;
 
 @end

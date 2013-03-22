@@ -36,11 +36,13 @@
     [self.arrayController setContent:self.items];
 //    [self addObserver:self forKeyPath:@"items" options:0 context:@"myContext"];
     id validate = [NSNumber numberWithInt:self.itemIndex];
-    NSError* errorValue = [[NSError alloc] initWithDomain:@"MyDomain" code:(long)34 userInfo:[NSDictionary dictionaryWithObject:@"DicObj" forKey:@"name" ]];
+    NSError* errorValue;
     [self validateValue:&validate forKey:@"itemIndex" error: &errorValue];
     [self setValue:@3 forKey:@"itemIndex"];
     [self setValue:nil forKey:@"itemIndex"];
 //    [self setValue:[[Item alloc] initWithName:@"tore" andPrice:56] forKey:@"items"];
+//    [self.tableView setAllowsColumnSelection:YES];
+    [self.arrayController setSortDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO], nil]];
 }
 
 -(void) setItemIndex:(int)itemIndex{
@@ -120,7 +122,16 @@
                     withItems:(id)items {
     NSLog(@"(void)replaceItemsAtIndexes:(CPIndexSet)indexes withItems:(CPArray)items ");
     [self.items replaceObjectsAtIndexes:indexes withObjects:items];
-    [pan]
+}
+
+
+#pragma mark TableView DataSource
+- (void)tableView:(NSTableView*)aTableView sortDescriptorsDidChange:(NSArray*)oldDescriptors
+{
+	NSLog(@"TabelView - sortDescriptorsDidChange");
+    NSArray* newDescriptors = [aTableView sortDescriptors];
+    [self.items sortUsingDescriptors:newDescriptors];
+    [self.tableView reloadData];
 }
 
 
@@ -153,5 +164,14 @@
     [proxy insertObject:[[Item alloc] initWithName:@"tore" andPrice:56] atIndex:0];
     NSArray* objects = [proxy objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 1)]];
     NSLog(@"Current state of items %@ count: %li",self.items,(unsigned long)noItems);
+}
+
+- (IBAction)showOrder:(NSButton *)sender {
+    NSMutableArray* kvc = [self mutableArrayValueForKey:@"items"];
+    NSLog(@"-(@action) showOrder:(id) sender ");
+    NSLog(@"-(@action) showOrder:(id) kvc array - %@",kvc);
+    NSLog(@"-(@action) showOrder:(id) items - %@",self.items);
+    NSLog(@"-(@action) showOrder:(id) Arraycontroller - %@",[self.arrayController arrangedObjects]);
+
 }
 @end

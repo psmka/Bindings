@@ -47,8 +47,7 @@
 
 -(BOOL) validateName:(id*) ioValue error:(NSError**) outError {
     NSLog(@"(BOOL) validateItemIndex:(id *)ioValue error:(NSError * __autoreleasing *)outError");
-    *ioValue = @"Validate";
-    return NO;
+    return YES;
 }
 
 

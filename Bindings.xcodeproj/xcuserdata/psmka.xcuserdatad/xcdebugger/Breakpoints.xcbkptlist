@@ -7,19 +7,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Bindings/TableDelegate.m"
-         timestampString = "385555069.099038"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
-         landmarkName = "-validateItemIndex:error:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Bindings/Item.m"
          timestampString = "385555941.294567"
          startingColumnNumber = "9223372036854775807"
@@ -34,13 +21,37 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Bindings/TableDelegate.m"
-         timestampString = "385560812.149764"
+         timestampString = "385648395.407682"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "147"
-         endingLineNumber = "147"
-         landmarkName = "-ChangeItem:"
+         startingLineNumber = "158"
+         endingLineNumber = "158"
+         landmarkName = "-doStuff:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Bindings/TableDelegate.m"
+         timestampString = "385648395.407682"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "44"
+         endingLineNumber = "44"
+         landmarkName = "-awakeFromNib"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Bindings/TableDelegate.h"
+         timestampString = "385645993.837181"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "9"
+         endingLineNumber = "9">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
