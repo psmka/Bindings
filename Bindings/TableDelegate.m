@@ -132,6 +132,7 @@
     NSArray* newDescriptors = [aTableView sortDescriptors];
     [self.items sortUsingDescriptors:newDescriptors];
     [self.tableView reloadData];
+    [self.tableView setAllowsColumnSelection:NO];
 }
 
 
@@ -172,6 +173,7 @@
     NSLog(@"-(@action) showOrder:(id) kvc array - %@",kvc);
     NSLog(@"-(@action) showOrder:(id) items - %@",self.items);
     NSLog(@"-(@action) showOrder:(id) Arraycontroller - %@",[self.arrayController arrangedObjects]);
+    [self.doStuffButton state]
 
 }
 @end
